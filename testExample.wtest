@@ -1,17 +1,31 @@
-import example.*
+import viajes.*
 
 describe "group of test for mutual" {
   const trek1 = new SalidaTrekking(kms=100, diasDeSol=130, idiomas=#{"ingles"})
   const trek2 = new SalidaTrekking(kms=50, diasDeSol=240, idiomas=#{"ingles"})
   const trek3 = new SalidaTrekking(kms=250, diasDeSol=130, idiomas=#{"ingles"})
   const playa1 = new ViajeDePlaya(largo=1000, idiomas=#{"jeringozo"})
-  const playa1 = new ViajeDePlaya(largo=2000, idiomas=#{"esperanto"})
-  const gim1 = new ClaseDeGimnasia()
+  const playa2 = new ViajeDePlaya(largo=2000, idiomas=#{"esperanto"})
+  const gim1 = new ClaseDeGimnasia(idiomas=#{"brasilero"})
   const roque = new Socio(maximoActividades=2)
 
   method initialize() {
     roque.registrarActividad(playa1)
     roque.registrarActividad(playa2)
-    roque.registrarActividad(gim1)
+    //roque.registrarActividad(gim1)
+  }
+
+  test "Roque es adorador al sol"{
+  assert.that(roque.esAdoradorDelSol())
+  }
+
+  test "La clase de gimnasia es siempre espaniol"{
+    assert.equals(#{"espaniol"} ,gim1.idiomas())
+  }
+
+
+  test "Actividades que implican esfuerzo"{
+    assert.equals([playa1], roque.actividadesEsforzadas())
   }
   }
+
